@@ -81,7 +81,7 @@ public class PlayerStatsTest {
     }
 
     @Test
-    @Disabled
+
     public void testWebsiteTitle() {
         // Hämta in de webdrivers du vill använda
         //WebDriver driver = new ChromeDriver();
