@@ -109,7 +109,7 @@ public class PlayerStatsTest {
 
         // Optional: Further checks on product details
         WebElement firstProduct = products.get(0);
-        System.out.println(firstProduct.getText());
+        System.out.println(firstProduct.getText());//
         assertEquals("Login", firstProduct.getText(), "Login button should be displayed");
 
     }
