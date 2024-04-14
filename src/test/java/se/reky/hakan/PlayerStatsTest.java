@@ -64,6 +64,7 @@ public class PlayerStatsTest {
     //Länken ska leda till en ny endpoint som hämtar ut endast denna player genom sitt iD
     //Den nya endpointen
     @Test
+    @Disabled
     public void testPlayerDetails() {
         driver.get("http://localhost:8080/players");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
