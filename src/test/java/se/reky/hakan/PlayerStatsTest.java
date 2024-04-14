@@ -50,7 +50,7 @@ public class PlayerStatsTest {
         driver.get("http://localhost:8080/players");
         List<WebElement> players = driver.findElements(By.cssSelector("ul > li"));
 
-        WebElement firstProduct = players.getFirst();
+        WebElement firstProduct = players.get(0);
         System.out.println(firstProduct.getText());
         assertTrue(firstProduct.getText().contains("Lars"), "Product name should be displayed");
     }
