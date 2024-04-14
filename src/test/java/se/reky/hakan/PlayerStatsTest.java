@@ -34,7 +34,7 @@ public class PlayerStatsTest {
         options.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         driver = new ChromeDriver();
-        //comment here now yes
+        //comment here now yes now
     }
 
     @AfterEach
