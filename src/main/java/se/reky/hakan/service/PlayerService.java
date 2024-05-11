@@ -33,6 +33,5 @@ public class PlayerService {
                 Sort.by(Sort.Direction.DESC, "experience"));
     }
 
-    // Other methods
 }
 

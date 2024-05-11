@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Character {
-    protected int hp;
+public abstract class Actor {
+    protected int hp = 0;
     protected String name;
     protected int damage;
     @Id
     @GeneratedValue
     private Long id;
 
-    public Character(String name, int hp, int damage) {
+    public Actor(String name, int hp, int damage) {
         this.name = name;
         this.hp = hp;
         this.damage = damage;
@@ -26,22 +26,19 @@ public abstract class Character {
         return id;
     }
 
-    public Character() {
+    public Actor() {
 
     }
 
     public int getHp() {
-
         return hp;
     }
 
     public void setHp(int hp) {
-
         this.hp = hp;
     }
 
     public String getName() {
-
         return name;
     }
 
@@ -53,7 +50,7 @@ public abstract class Character {
         this.damage = damage;
     }
 
-    public void attack(Character other) {
+    public void attack(Actor other) {
         other.setHp(other.getHp() - this.damage);
     }
 

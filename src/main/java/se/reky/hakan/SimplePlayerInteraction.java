@@ -3,18 +3,16 @@ package se.reky.hakan;
 import se.reky.hakan.model.Player;
 
 public class SimplePlayerInteraction implements PlayerInteraction {
-    private Player player;
     private final IOHandler ioHandler;
 
-    public SimplePlayerInteraction(Player player, IOHandler ioHandler) {
-        this.player = player;
+    public SimplePlayerInteraction(IOHandler ioHandler) {
         this.ioHandler = ioHandler;
     }
 
     @Override
-    public void setupPlayer() {
+    public void setupPlayer(Player player) {
         ioHandler.output("Please enter your name:");
-        String playerName = ioHandler.readLine();
+        String playerName = ioHandler.nextLine();
         player.setName(playerName);
         player.setHp(10);  // Default health
         player.setDamage(7); // Default damage
@@ -22,18 +20,14 @@ public class SimplePlayerInteraction implements PlayerInteraction {
     }
 
     @Override
-    public void updatePlayerHealth(int hp) {
+    public void updatePlayerHealth(Player player, int hp) {
         player.setHp(player.getHp() + hp);
         ioHandler.output(String.format("Updated HP: %d", player.getHp()));
     }
 
     @Override
-    public void greetPlayer() {
+    public void greetPlayer(Player player) {
         ioHandler.output(String.format("Welcome %s, let's start the game!", player.getName()));
-    }
-
-    public void setPlayer(Player player){
-        this.player = player;
     }
 }
 

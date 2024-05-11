@@ -3,14 +3,13 @@ package se.reky.hakan;
 import se.reky.hakan.model.Goblin;
 import se.reky.hakan.model.Guard;
 import se.reky.hakan.model.Player;
-import se.reky.hakan.model.Character;
+import se.reky.hakan.model.Actor;
 
 public class SimpleGameStateManager implements GameStateManager {
     private Player player;
     private final IOHandler ioHandler;
 
-    public SimpleGameStateManager(Player player, IOHandler ioHandler) {
-        this.player = player;
+    public SimpleGameStateManager(IOHandler ioHandler) {
         this.ioHandler = ioHandler;
     }
 
@@ -25,8 +24,8 @@ public class SimpleGameStateManager implements GameStateManager {
         ioHandler.output("3: Leave");
         ioHandler.output("\n------------------------------------------------------------------\n");
 
-        int choice = ioHandler.readInt();
-        ioHandler.readLine();
+        int choice = ioHandler.nextInt();
+        ioHandler.nextLine();
 
         switch (choice) {
             case 1:
@@ -35,7 +34,7 @@ public class SimpleGameStateManager implements GameStateManager {
                 } else {
                     ioHandler.output("Guard: Hello there, stranger. So your name is " + player.getName() + "? Sorry, but we cannot let a stranger enter our town.");
                     ioHandler.output("Press RETURN to continue");
-                    ioHandler.readLine();
+                    ioHandler.nextLine();
                     executeTownGate();
                 }
                 break;
@@ -53,7 +52,7 @@ public class SimpleGameStateManager implements GameStateManager {
 
 
     @Override
-    public void executeFight(Character opponent) {
+    public void executeFight(Actor opponent) {
         ioHandler.output("\n------------------------------------------------------------------\n");
         ioHandler.output("Ok, so you want to fight! Let's rumble!");
 
@@ -64,7 +63,7 @@ public class SimpleGameStateManager implements GameStateManager {
             ioHandler.output("2: Run");
             ioHandler.output("\n------------------------------------------------------------------\n");
 
-            int choice = ioHandler.readInt();
+            int choice = ioHandler.nextInt();
             if (choice == 1) {
                 player.attack(opponent);
                 if (opponent.isAlive()) {
@@ -78,9 +77,8 @@ public class SimpleGameStateManager implements GameStateManager {
 
         if (!player.isAlive()) {
             ioHandler.output("You have died.");
-            ioHandler.readLine();
+            ioHandler.nextLine();
             return;
-            //System.exit(0);
         }
 
         ioHandler.output("You defeated the opponent!");
@@ -101,9 +99,10 @@ public class SimpleGameStateManager implements GameStateManager {
         ioHandler.output("2: Go east");
         ioHandler.output("3: Go south");
         ioHandler.output("4: Go west");
+        ioHandler.output("5: Give up");
         ioHandler.output("\n------------------------------------------------------------------\n");
 
-        int choice = ioHandler.readInt();
+        int choice = ioHandler.nextInt();
 
         switch (choice) {
             case 1:
@@ -117,6 +116,9 @@ public class SimpleGameStateManager implements GameStateManager {
                 break;
             case 4:
                 executeWest();
+                break;
+            case 5:
+                giveUp();
                 break;
             default:
                 executeCrossRoad();
@@ -164,14 +166,18 @@ public class SimpleGameStateManager implements GameStateManager {
         player.addExperience(10);
     }
 
+    private void giveUp(){
+        ioHandler.output("\n------------------------------------------------------------------\n");
+        ioHandler.output("You gave up cowardly. Your experience will be set to -1");
+        ioHandler.output("\n\n           THE END                    ");
+        ioHandler.output("\n------------------------------------------------------------------\n");
+        player.setExperience(-1);
+    }
+    @Override
     public void setPlayer(Player player){
         this.player = player;
     }
-
-    public boolean isPlayerAlive(){
-        return player.isAlive();
-    }
-
+    @Override
     public Player getPlayer(){
         return player;
     }

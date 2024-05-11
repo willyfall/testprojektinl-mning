@@ -5,12 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<button>Logga in</button>
 <h2>Players List</h2>
 <ul>
     <li th:each="player : ${players}">
-        <!-- Link pointing to the getPlayer endpoint with player ID as parameter -->
-        <a th:href="@{/player(id=${player.id})}" th:text="${player.name}">Player Name</a> -
-        <span th:text="${player.experience}">Experience</span>
+        <span class="player-name" th:text="${player.name}">Player Name</span>
+        <span class="player-experience" th:text="${player.experience}">Experience</span>
     </li>
 </ul>
 </body>

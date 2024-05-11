@@ -2,11 +2,10 @@ package se.reky.hakan.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Player extends Character {
+public class Player extends Actor {
     private String weapon;
     private int experience = 0;
     private boolean silverRingObtained;
@@ -17,6 +16,10 @@ public class Player extends Character {
     public Player(String name, int hp, int damage) {
         super(name, hp, damage);
 
+    }
+
+    public Player() {
+        super();
     }
 
     public boolean isSilverRingObtained() {
@@ -35,20 +38,17 @@ public class Player extends Character {
         this.id = id;
     }
 
-    public Player() {
-        super();
-    }
-
 
     public int getExperience() {
         return experience;
     }
 
-    public void setExperience(int experience){
+    public void setExperience(int experience) {
         this.experience = experience;
     }
 
     public void addExperience(int experience) {
+
         this.experience += experience;
     }
 

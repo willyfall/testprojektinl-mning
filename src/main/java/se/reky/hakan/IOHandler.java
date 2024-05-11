@@ -27,11 +27,14 @@ public class IOHandler {
         System.out.println(toOutput);
     }
 
-    int readInt(){
+    int nextInt(){
         return scanner.nextInt();
     }
-    String readLine(){
+    String nextLine(){
         return scanner.nextLine();
+    }
+    boolean hasNextInt(){
+        return scanner.hasNextInt();
     }
 
 }
